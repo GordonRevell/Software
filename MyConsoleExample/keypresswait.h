@@ -20,6 +20,9 @@ namespace gordon
         void keypressed();
 
     public slots:
+
+    private:
+        std::thread* t;
     };
 }
 

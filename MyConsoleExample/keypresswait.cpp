@@ -6,7 +6,7 @@ namespace gordon
     {
         connect(this, &KeypressWait::keypressed, &application, &QCoreApplication::quit);
 
-        std::thread t([this]()
+        t = new std::thread([this]()
         {
             std::string buffer;
 
@@ -19,5 +19,6 @@ namespace gordon
 
     KeypressWait::~KeypressWait()
     {
+        delete t;
     }
 }
