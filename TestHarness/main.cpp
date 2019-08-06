@@ -1,8 +1,23 @@
+#include "keypresswait.h"
+
+#include <iostream>
+
 #include <QCoreApplication>
+
+#include "datamanager.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    return a.exec();
+    std::cout << "Application start" << std::endl;
+
+    KeypressWait wait(a);
+    DataManager* manager = new DataManager();
+
+    int result = a.exec();
+
+    delete manager;
+
+    return result;
 }

@@ -7,23 +7,20 @@
 #include <QObject>
 #include <QCoreApplication>
 
-namespace gordon
+class KeypressWait : public QObject
 {
-    class KeypressWait : public QObject
-    {
-        Q_OBJECT
-    public:
-        explicit KeypressWait(QCoreApplication& application, QObject *parent = nullptr);
-        virtual ~KeypressWait();
+    Q_OBJECT
+public:
+    explicit KeypressWait(QCoreApplication& application, QObject *parent = nullptr);
+    virtual ~KeypressWait();
 
-    signals:
-        void keypressed();
+signals:
+    void keypressed();
 
-    public slots:
+public slots:
 
-    private:
-        std::thread* t;
-    };
-}
+private:
+    std::thread* t;
+};
 
 #endif // KEYPRESSWAIT_H

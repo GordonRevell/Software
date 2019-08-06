@@ -1,22 +1,31 @@
 #ifndef MYOPTIONSDIALOG_H
 #define MYOPTIONSDIALOG_H
 
+#include "mydelegate.h"
+
 #include <QDialog>
+#include <QStandardItemModel>
 
 namespace Ui {
 class MyOptionsDialog;
 }
 
-class MyOptionsDialog : public QDialog
+namespace Gordon
 {
-    Q_OBJECT
+    class MyOptionsDialog : public QDialog
+    {
+        Q_OBJECT
 
-public:
-    explicit MyOptionsDialog(QWidget *parent = nullptr);
-    ~MyOptionsDialog();
+    public:
+        explicit MyOptionsDialog(QWidget* parent = nullptr);
+        ~MyOptionsDialog();
 
-private:
-    Ui::MyOptionsDialog *ui;
-};
+    private:
+        Ui::MyOptionsDialog* ui;
+
+        QStandardItemModel* _model;
+        MyDelegate* _myDelegate;
+    };
+}
 
 #endif // MYOPTIONSDIALOG_H

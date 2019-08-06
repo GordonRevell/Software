@@ -15,9 +15,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        keypresswait.cpp \
         main.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../DataManagementSystem/build-DataManagementSystem-Desktop_Qt_5_12_3_GCC_64bit-Debug/release/ -lDataManagementSystem
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../DataManagementSystem/build-DataManagementSystem-Desktop_Qt_5_12_3_GCC_64bit-Debug/debug/ -lDataManagementSystem
+else:unix: LIBS += -L$$PWD/../DataManagementSystem/build-DataManagementSystem-Desktop_Qt_5_12_3_GCC_64bit-Debug/ -lDataManagementSystem
+
+INCLUDEPATH += $$PWD/../DataManagementSystem
+DEPENDPATH += $$PWD/../DataManagementSystem
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../DataManagementSystem/build-DataManagementSystem-Desktop_Qt_5_12_3_GCC_64bit-Debug/release/libDataManagementSystem.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../DataManagementSystem/build-DataManagementSystem-Desktop_Qt_5_12_3_GCC_64bit-Debug/debug/libDataManagementSystem.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../DataManagementSystem/build-DataManagementSystem-Desktop_Qt_5_12_3_GCC_64bit-Debug/release/DataManagementSystem.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../DataManagementSystem/build-DataManagementSystem-Desktop_Qt_5_12_3_GCC_64bit-Debug/debug/DataManagementSystem.lib
+else:unix: PRE_TARGETDEPS += $$PWD/../DataManagementSystem/build-DataManagementSystem-Desktop_Qt_5_12_3_GCC_64bit-Debug/libDataManagementSystem.a
+
+HEADERS += \
+    keypresswait.h
