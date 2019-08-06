@@ -1,7 +1,12 @@
 #include "gismo.h"
+#include "datamanager.h"
 
-Gismo::Gismo(QObject *parent) : QObject(parent)
+bool Gismo::s_registered = DataManager::registerType("Gismo", &Gismo::CreateMethod);
+
+Gismo::Gismo(QString& name, Gismo* parent, QObject* gismoCollection) : QObject(gismoCollection)
 {
+    _name = name;
+    _parent = parent;
 }
 
 Gismo::~Gismo()

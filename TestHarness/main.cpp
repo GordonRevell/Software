@@ -15,6 +15,9 @@ int main(int argc, char *argv[])
     KeypressWait wait(a);
     DataManager* manager = new DataManager();
 
+    manager->addGismo("Dynamometer", "Gismo");
+    manager->addGismo("Data Acquistion", "Gismo");
+
     int result = a.exec();
 
     delete manager;
