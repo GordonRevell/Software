@@ -6,6 +6,8 @@
 
 class ExplorerWidget : public QDockWidget
 {
+    Q_OBJECT
+
 public:
     ExplorerWidget(QWidget* parent = nullptr);
 

@@ -7,6 +7,8 @@
 #include <QTimer>
 #include <QDateTime>
 
+#include <iostream>
+
 MainWindow::MainWindow(QWidget* parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -61,7 +63,15 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_actionDial_triggered()
 {
-    // Add open by name code
+    int id = QMetaType::type("Test");
+
+    if(id != QMetaType::UnknownType)
+    {
+    }
+    else
+    {
+        std::cout << "Cannot find 'Test' class" << std::endl;
+    }
 }
 
 void MainWindow::update()

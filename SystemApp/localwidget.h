@@ -5,8 +5,11 @@
 
 class LocalWidget : public QDockWidget
 {
+    Q_OBJECT
+
 public:
-    LocalWidget();
+    LocalWidget(QWidget *parent = nullptr);
+    LocalWidget(const LocalWidget& w);
 };
 
 #endif // LOCALWIDGET_H

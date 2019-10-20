@@ -1,6 +1,9 @@
 #include "localwidget.h"
 
-LocalWidget::LocalWidget()
+LocalWidget::LocalWidget(QWidget *parent) : QDockWidget(parent)
 {
+}
 
+LocalWidget::LocalWidget(const LocalWidget&)
+{
 }

@@ -25,12 +25,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        dialwidget.cpp \
         explorerwidget.cpp \
         localwidget.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
+        dialwidget.h \
         explorerwidget.h \
         localwidget.h \
         mainwindow.h
@@ -42,3 +44,8 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resources.qrc
+
+DISTFILES +=
