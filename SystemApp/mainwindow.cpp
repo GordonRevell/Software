@@ -2,12 +2,11 @@
 #include "ui_mainwindow.h"
 
 #include "explorerwidget.h"
+#include "localwidget.h"
 
 #include <QSettings>
 #include <QTimer>
 #include <QDateTime>
-
-#include <iostream>
 
 MainWindow::MainWindow(QWidget* parent) :
     QMainWindow(parent),
@@ -28,14 +27,17 @@ MainWindow::~MainWindow()
 
 void MainWindow::closeEvent(QCloseEvent* event)
 {
-    QSettings settings;
+    QList<QDockWidget*> dockWidgets = findChildren<QDockWidget *>();
 
-    settings.beginGroup("MainWindow");
+    for(auto w : dockWidgets)
+    {
+        if(w)
+        {
+            std::cout << w->metaObject()->className() << " " << w->objectName().toStdString() << std::endl;
+        }
+    }
 
-    settings.setValue("geometry", saveGeometry());
-    settings.setValue("windowState", saveState());
-
-    settings.endGroup();
+    saveLayout();
 
     QMainWindow::closeEvent(event);
 }
@@ -63,14 +65,13 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_actionDial_triggered()
 {
-    int id = QMetaType::type("Test");
+    QDockWidget* dock = LocalWidget::createLocalWidget("Test");
 
-    if(id != QMetaType::UnknownType)
+    if(dock)
     {
-    }
-    else
-    {
-        std::cout << "Cannot find 'Test' class" << std::endl;
+        addDockWidget(Qt::RightDockWidgetArea, dock);
+
+        dock->setFloating(true);
     }
 }
 
@@ -109,4 +110,16 @@ void MainWindow::createStatusBar()
     statusBarTime = new QLabel("21-Sep-1962 10:00:00", this);
 
     statusBar()->addPermanentWidget(statusBarTime);
+}
+
+void MainWindow::saveLayout()
+{
+    QSettings settings;
+
+    settings.beginGroup("MainWindow");
+
+    settings.setValue("geometry", saveGeometry());
+    settings.setValue("windowState", saveState());
+
+    settings.endGroup();
 }

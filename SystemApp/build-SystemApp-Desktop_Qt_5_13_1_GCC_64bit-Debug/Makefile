@@ -1799,26 +1799,6 @@ mainwindow.o: ../mainwindow.cpp ../mainwindow.h \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qlabel.h \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qframe.h \
 		ui_mainwindow.h \
-		../../../Qt/5.13.1/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.13.1/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.13.1/gcc_64/include/QtCore/qeventloop.h \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.13.1/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.13.1/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QMenu \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qmenu.h \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QMenuBar \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qmenubar.h \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QStatusBar \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qstatusbar.h \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QToolBar \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qtoolbar.h \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QWidget \
 		../explorerwidget.h \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QDockWidget \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qdockwidget.h \
@@ -1838,6 +1818,7 @@ mainwindow.o: ../mainwindow.cpp ../mainwindow.h \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qstyle.h \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qtabbar.h \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qrubberband.h \
+		../localwidget.h \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/QSettings \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/qsettings.h \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/QTimer \

@@ -10,14 +10,8 @@ class DialWidget : public LocalWidget
 public:
     DialWidget(QWidget *parent = nullptr);
 
-    DialWidget(const DialWidget& w);
-
 private:
     static bool s_registered;
-
-    static bool registerType(QString name);
 };
-
-Q_DECLARE_METATYPE(DialWidget)
 
 #endif // DIALWIDGET_H

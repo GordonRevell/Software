@@ -37,6 +37,7 @@ private:
 
     QLabel* statusBarTime;
     void createStatusBar();
+    void saveLayout();
 };
 
 #endif // MAINWINDOW_H
