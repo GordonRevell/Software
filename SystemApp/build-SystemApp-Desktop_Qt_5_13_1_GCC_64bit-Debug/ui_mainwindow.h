@@ -25,9 +25,12 @@ class Ui_MainWindow
 {
 public:
     QAction *actionExit;
+    QAction *actionDial;
     QWidget *centralWidget;
     QMenuBar *menuBar;
     QMenu *menuFile;
+    QMenu *menuAdd;
+    QMenu *menuView;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -38,6 +41,8 @@ public:
         MainWindow->resize(400, 300);
         actionExit = new QAction(MainWindow);
         actionExit->setObjectName(QString::fromUtf8("actionExit"));
+        actionDial = new QAction(MainWindow);
+        actionDial->setObjectName(QString::fromUtf8("actionDial"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         MainWindow->setCentralWidget(centralWidget);
@@ -46,6 +51,10 @@ public:
         menuBar->setGeometry(QRect(0, 0, 400, 23));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
+        menuAdd = new QMenu(menuBar);
+        menuAdd->setObjectName(QString::fromUtf8("menuAdd"));
+        menuView = new QMenu(menuBar);
+        menuView->setObjectName(QString::fromUtf8("menuView"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -55,7 +64,10 @@ public:
         MainWindow->setStatusBar(statusBar);
 
         menuBar->addAction(menuFile->menuAction());
+        menuBar->addAction(menuView->menuAction());
+        menuBar->addAction(menuAdd->menuAction());
         menuFile->addAction(actionExit);
+        menuAdd->addAction(actionDial);
 
         retranslateUi(MainWindow);
 
@@ -66,7 +78,10 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         actionExit->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));
+        actionDial->setText(QCoreApplication::translate("MainWindow", "Dial", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
+        menuAdd->setTitle(QCoreApplication::translate("MainWindow", "Add", nullptr));
+        menuView->setTitle(QCoreApplication::translate("MainWindow", "View", nullptr));
     } // retranslateUi
 
 };

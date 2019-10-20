@@ -52,9 +52,13 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../main.cpp \
+SOURCES       = ../explorerwidget.cpp \
+		../localwidget.cpp \
+		../main.cpp \
 		../mainwindow.cpp moc_mainwindow.cpp
-OBJECTS       = main.o \
+OBJECTS       = explorerwidget.o \
+		localwidget.o \
+		main.o \
 		mainwindow.o \
 		moc_mainwindow.o
 DIST          = ../../../../Qt/5.13.1/gcc_64/mkspecs/features/spec_pre.prf \
@@ -253,7 +257,11 @@ DIST          = ../../../../Qt/5.13.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.13.1/gcc_64/mkspecs/features/exceptions.prf \
 		../../../../Qt/5.13.1/gcc_64/mkspecs/features/yacc.prf \
 		../../../../Qt/5.13.1/gcc_64/mkspecs/features/lex.prf \
-		../../SystemApp.pro ../mainwindow.h ../main.cpp \
+		../../SystemApp.pro ../explorerwidget.h \
+		../localwidget.h \
+		../mainwindow.h ../explorerwidget.cpp \
+		../localwidget.cpp \
+		../main.cpp \
 		../mainwindow.cpp
 QMAKE_TARGET  = SystemApp
 DESTDIR       = 
@@ -676,8 +684,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qt/5.13.1/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../main.cpp ../mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../explorerwidget.h ../localwidget.h ../mainwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../explorerwidget.cpp ../localwidget.cpp ../main.cpp ../mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../mainwindow.ui $(DISTDIR)/
 
 
@@ -844,6 +852,12 @@ compiler_lex_clean:
 compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
+
+explorerwidget.o: ../explorerwidget.cpp ../explorerwidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o explorerwidget.o ../explorerwidget.cpp
+
+localwidget.o: ../localwidget.cpp ../localwidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o localwidget.o ../localwidget.cpp
 
 main.o: ../main.cpp ../mainwindow.h \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QMainWindow \
@@ -1068,7 +1082,31 @@ mainwindow.o: ../mainwindow.cpp ../mainwindow.h \
 		../../../Qt/5.13.1/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.13.1/gcc_64/include/QtGui/qicon.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		../../../Qt/5.13.1/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QAction \
+		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qaction.h \
+		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QApplication \
+		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qapplication.h \
+		../../../Qt/5.13.1/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../Qt/5.13.1/gcc_64/include/QtCore/qeventloop.h \
+		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/5.13.1/gcc_64/include/QtGui/qguiapplication.h \
+		../../../Qt/5.13.1/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QMenu \
+		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qmenu.h \
+		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QMenuBar \
+		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qmenubar.h \
+		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QStatusBar \
+		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qstatusbar.h \
+		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QToolBar \
+		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qtoolbar.h \
+		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QWidget \
+		../../../Qt/5.13.1/gcc_64/include/QtCore/QSettings \
+		../../../Qt/5.13.1/gcc_64/include/QtCore/qsettings.h \
+		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QDockWidget \
+		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qdockwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../mainwindow.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 

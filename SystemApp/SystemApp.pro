@@ -25,10 +25,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        explorerwidget.cpp \
+        localwidget.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
+        explorerwidget.h \
+        localwidget.h \
         mainwindow.h
 
 FORMS += \
