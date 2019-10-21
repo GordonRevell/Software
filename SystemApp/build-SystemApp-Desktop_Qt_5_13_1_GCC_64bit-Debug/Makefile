@@ -729,7 +729,9 @@ compiler_rcc_make_all: qrc_resources.cpp
 compiler_rcc_clean:
 	-$(DEL_FILE) qrc_resources.cpp
 qrc_resources.cpp: ../resources.qrc \
-		../../../Qt/5.13.1/gcc_64/bin/rcc
+		../../../Qt/5.13.1/gcc_64/bin/rcc \
+		../resources/bird-pngrepo-com.png \
+		../resources/exit.png
 	/home/gordon/Qt/5.13.1/gcc_64/bin/rcc -name resources ../resources.qrc -o qrc_resources.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h

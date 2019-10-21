@@ -13,15 +13,14 @@ public:
     LocalWidget(QWidget *parent = nullptr);
     LocalWidget(const LocalWidget& w);
 
-    static unsigned int s_count;
-
     template<typename T> static bool registerType(QString name)
     {
         auto c = name.toStdString();
+        int id = qRegisterMetaType<T>(c.c_str());
 
-        return (qRegisterMetaType<T>(c.c_str()) != QMetaType::UnknownType);
+        s_idList.push_back(id);
 
-        return true;
+        return (id != QMetaType::UnknownType);
     }
 
     static QDockWidget* createLocalWidget(QString name)
@@ -55,6 +54,11 @@ public:
 
         return result;
     }
+
+private:
+    static unsigned int s_count;
+    static std::vector<int> s_idList;
+
 };
 
 #endif // LOCALWIDGET_H

@@ -10,6 +10,7 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
@@ -39,8 +40,14 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(400, 300);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/new/prefix1/resources/bird-pngrepo-com.png"), QSize(), QIcon::Normal, QIcon::Off);
+        MainWindow->setWindowIcon(icon);
         actionExit = new QAction(MainWindow);
         actionExit->setObjectName(QString::fromUtf8("actionExit"));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/new/prefix1/resources/exit.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionExit->setIcon(icon1);
         actionDial = new QAction(MainWindow);
         actionDial->setObjectName(QString::fromUtf8("actionDial"));
         centralWidget = new QWidget(MainWindow);
@@ -68,6 +75,7 @@ public:
         menuBar->addAction(menuAdd->menuAction());
         menuFile->addAction(actionExit);
         menuAdd->addAction(actionDial);
+        mainToolBar->addAction(actionExit);
 
         retranslateUi(MainWindow);
 
@@ -76,8 +84,11 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Main Window", nullptr));
         actionExit->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));
+#if QT_CONFIG(tooltip)
+        actionExit->setToolTip(QCoreApplication::translate("MainWindow", "Exit application", nullptr));
+#endif // QT_CONFIG(tooltip)
         actionDial->setText(QCoreApplication::translate("MainWindow", "Dial", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuAdd->setTitle(QCoreApplication::translate("MainWindow", "Add", nullptr));
