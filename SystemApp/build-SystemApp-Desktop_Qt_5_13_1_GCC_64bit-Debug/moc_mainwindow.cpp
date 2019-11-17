@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[5];
-    char stringdata0[67];
+    char stringdata0[53];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,12 +35,12 @@ static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
 QT_MOC_LITERAL(1, 11, 23), // "on_actionExit_triggered"
 QT_MOC_LITERAL(2, 35, 0), // ""
-QT_MOC_LITERAL(3, 36, 23), // "on_actionDial_triggered"
-QT_MOC_LITERAL(4, 60, 6) // "update"
+QT_MOC_LITERAL(3, 36, 9), // "addWidget"
+QT_MOC_LITERAL(4, 46, 6) // "update"
 
     },
     "MainWindow\0on_actionExit_triggered\0\0"
-    "on_actionDial_triggered\0update"
+    "addWidget\0update"
 };
 #undef QT_MOC_LITERAL
 
@@ -77,7 +77,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_actionExit_triggered(); break;
-        case 1: _t->on_actionDial_triggered(); break;
+        case 1: _t->addWidget(); break;
         case 2: _t->update(); break;
         default: ;
         }

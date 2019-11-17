@@ -37,7 +37,6 @@
     <property name="title">
      <string>Add</string>
     </property>
-    <addaction name="actionDial"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -68,11 +67,6 @@
    </property>
    <property name="toolTip">
     <string>Exit application</string>
-   </property>
-  </action>
-  <action name="actionDial">
-   <property name="text">
-    <string>Dial</string>
    </property>
   </action>
  </widget>

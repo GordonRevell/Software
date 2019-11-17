@@ -26,7 +26,6 @@ class Ui_MainWindow
 {
 public:
     QAction *actionExit;
-    QAction *actionDial;
     QWidget *centralWidget;
     QMenuBar *menuBar;
     QMenu *menuFile;
@@ -48,8 +47,6 @@ public:
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/new/prefix1/resources/exit.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionExit->setIcon(icon1);
-        actionDial = new QAction(MainWindow);
-        actionDial->setObjectName(QString::fromUtf8("actionDial"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         MainWindow->setCentralWidget(centralWidget);
@@ -74,7 +71,6 @@ public:
         menuBar->addAction(menuView->menuAction());
         menuBar->addAction(menuAdd->menuAction());
         menuFile->addAction(actionExit);
-        menuAdd->addAction(actionDial);
         mainToolBar->addAction(actionExit);
 
         retranslateUi(MainWindow);
@@ -89,7 +85,6 @@ public:
 #if QT_CONFIG(tooltip)
         actionExit->setToolTip(QCoreApplication::translate("MainWindow", "Exit application", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionDial->setText(QCoreApplication::translate("MainWindow", "Dial", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuAdd->setTitle(QCoreApplication::translate("MainWindow", "Add", nullptr));
         menuView->setTitle(QCoreApplication::translate("MainWindow", "View", nullptr));

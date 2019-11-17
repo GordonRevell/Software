@@ -22,8 +22,8 @@ protected:
 
 private slots:
     void on_actionExit_triggered();
-    void on_actionDial_triggered();
 
+    void addWidget();
     void update();
 
 private:

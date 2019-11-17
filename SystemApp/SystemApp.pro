@@ -29,13 +29,17 @@ SOURCES += \
         explorerwidget.cpp \
         localwidget.cpp \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        widgettype.cpp \
+        widgettypecollection.cpp
 
 HEADERS += \
         dialwidget.h \
         explorerwidget.h \
         localwidget.h \
-        mainwindow.h
+        mainwindow.h \
+        widgettype.h \
+        widgettypecollection.h
 
 FORMS += \
         mainwindow.ui

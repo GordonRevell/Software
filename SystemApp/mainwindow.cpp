@@ -17,6 +17,22 @@ MainWindow::MainWindow(QWidget* parent) :
     createStatusBar();
 
     explorer = createExplorer();
+
+    for(WidgetType* t : LocalWidget::types())
+    {
+        if(t)
+        {
+            QAction* a = new QAction(t->name());
+            QVariant v = qVariantFromValue(reinterpret_cast<void*>(t));
+
+            a->setData(v);
+
+            connect(a, &QAction::triggered, this, &MainWindow::addWidget);
+
+            ui->menuAdd->addAction(a);
+        }
+    }
+
     timer = createTimer();
 }
 
@@ -27,16 +43,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::closeEvent(QCloseEvent* event)
 {
-    QList<QDockWidget*> dockWidgets = findChildren<QDockWidget *>();
-
-    for(auto w : dockWidgets)
-    {
-        if(w)
-        {
-            std::cout << w->metaObject()->className() << " " << w->objectName().toStdString() << std::endl;
-        }
-    }
-
     saveLayout();
 
     QMainWindow::closeEvent(event);
@@ -50,6 +56,7 @@ void MainWindow::showEvent(QShowEvent* event)
 
     restoreGeometry(settings.value("geometry").toByteArray());
     restoreState(settings.value("windowState").toByteArray());
+    LocalWidget::restore(settings.value("widgets").toByteArray());
 
     settings.endGroup();
 
@@ -63,16 +70,24 @@ void MainWindow::on_actionExit_triggered()
     close();
 }
 
-void MainWindow::on_actionDial_triggered()
+void MainWindow::addWidget()
 {
-    QDockWidget* dock = LocalWidget::createLocalWidget("Test");
+    QAction* act = qobject_cast<QAction*>(sender());
+    QVariant v = act->data();
+    WidgetType* t = reinterpret_cast<WidgetType*>(v.value<void*>());
 
-    if(dock)
+    if(t)
     {
-        addDockWidget(Qt::RightDockWidgetArea, dock);
+        QDockWidget* dock = LocalWidget::createLocalWidget(t);
 
-        dock->setFloating(true);
+        if(dock)
+        {
+            addDockWidget(Qt::RightDockWidgetArea, dock);
+
+            dock->setFloating(true);
+        }
     }
+
 }
 
 void MainWindow::update()
@@ -120,6 +135,7 @@ void MainWindow::saveLayout()
 
     settings.setValue("geometry", saveGeometry());
     settings.setValue("windowState", saveState());
+    settings.setValue("widgets", LocalWidget::save());
 
     settings.endGroup();
 }
