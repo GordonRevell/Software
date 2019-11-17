@@ -29,7 +29,7 @@ QByteArray LocalWidget::save()
             {
                 std::cout << w->type()->name().toStdString() << " " << w->objectName().toStdString() << std::endl;
 
-                out << w->type();
+                out << w->type()->name();
                 out << w->objectName();
             }
         }
@@ -54,7 +54,12 @@ bool LocalWidget::restore(const QByteArray& widgets)
         in >> type;
         in >> objectName;
 
-        //WidgetType* type = s_types->fin
+        auto widgetType = s_widgetTypes->find(type);
+
+        if(widgetType)
+        {
+            std::cout << "Restore: " << widgetType->name().toStdString() << std::endl;
+        }
     }
 
     return false;

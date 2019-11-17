@@ -41,3 +41,24 @@ bool WidgetTypeCollection::forEach(ForEachFn forEach)
 
     return result;
 }
+
+WidgetType* WidgetTypeCollection::find(QString typeName)
+{
+    WidgetType* result = nullptr;
+
+    for(auto t : _types)
+    {
+        if(t)
+        {
+            int x = QString::compare(typeName, t->name(), Qt::CaseInsensitive);
+
+            if(x == 0)
+            {
+                result = t;
+                break;
+            }
+        }
+    }
+
+    return result;
+}

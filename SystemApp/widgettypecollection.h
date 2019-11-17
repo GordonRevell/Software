@@ -42,6 +42,7 @@ public:
     }
 
     bool forEach(ForEachFn forEach);
+    WidgetType* find(QString typeName);
 
 signals:
 
