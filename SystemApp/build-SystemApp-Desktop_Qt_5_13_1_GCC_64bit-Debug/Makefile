@@ -811,6 +811,7 @@ moc_dialwidget.cpp: ../dialwidget.h \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/qcontainerfwd.h \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/qobject_impl.h \
 		../widgettypecollection.h \
+		../../../Qt/5.13.1/gcc_64/include/QtCore/QVector \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QDockWidget \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qdockwidget.h \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -1051,6 +1052,7 @@ moc_localwidget.cpp: ../localwidget.h \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/qcontainerfwd.h \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/qobject_impl.h \
 		../widgettypecollection.h \
+		../../../Qt/5.13.1/gcc_64/include/QtCore/QVector \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QDockWidget \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qdockwidget.h \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -1333,6 +1335,7 @@ moc_widgettypecollection.cpp: ../widgettypecollection.h \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/qvarlengtharray.h \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/qcontainerfwd.h \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/qobject_impl.h \
+		../../../Qt/5.13.1/gcc_64/include/QtCore/QVector \
 		moc_predefs.h \
 		../../../Qt/5.13.1/gcc_64/bin/moc
 	/home/gordon/Qt/5.13.1/gcc_64/bin/moc $(DEFINES) --include /home/gordon/Software/SystemApp/build-SystemApp-Desktop_Qt_5_13_1_GCC_64bit-Debug/moc_predefs.h -I/home/gordon/Qt/5.13.1/gcc_64/mkspecs/linux-g++ -I/home/gordon/Software/SystemApp -I/home/gordon/Qt/5.13.1/gcc_64/include -I/home/gordon/Qt/5.13.1/gcc_64/include/QtWidgets -I/home/gordon/Qt/5.13.1/gcc_64/include/QtGui -I/home/gordon/Qt/5.13.1/gcc_64/include/QtCore -I. -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../widgettypecollection.h -o moc_widgettypecollection.cpp
@@ -1414,6 +1417,7 @@ dialwidget.o: ../dialwidget.cpp ../dialwidget.h \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/qcontainerfwd.h \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/qobject_impl.h \
 		../widgettypecollection.h \
+		../../../Qt/5.13.1/gcc_64/include/QtCore/QVector \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QDockWidget \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qdockwidget.h \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -1655,6 +1659,7 @@ localwidget.o: ../localwidget.cpp ../localwidget.h \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/qcontainerfwd.h \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/qobject_impl.h \
 		../widgettypecollection.h \
+		../../../Qt/5.13.1/gcc_64/include/QtCore/QVector \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QDockWidget \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qdockwidget.h \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -1940,27 +1945,6 @@ mainwindow.o: ../mainwindow.cpp ../mainwindow.h \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qlabel.h \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qframe.h \
 		ui_mainwindow.h \
-		../../../Qt/5.13.1/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.13.1/gcc_64/include/QtGui/QIcon \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.13.1/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.13.1/gcc_64/include/QtCore/qeventloop.h \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.13.1/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.13.1/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QMenu \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qmenu.h \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QMenuBar \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qmenubar.h \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QStatusBar \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qstatusbar.h \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QToolBar \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qtoolbar.h \
-		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QWidget \
 		../explorerwidget.h \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/QDockWidget \
 		../../../Qt/5.13.1/gcc_64/include/QtWidgets/qdockwidget.h \
@@ -1984,6 +1968,7 @@ mainwindow.o: ../mainwindow.cpp ../mainwindow.h \
 		../widgettype.h \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/QObject \
 		../widgettypecollection.h \
+		../../../Qt/5.13.1/gcc_64/include/QtCore/QVector \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/QSettings \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/qsettings.h \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/QTimer \
@@ -2101,7 +2086,8 @@ widgettypecollection.o: ../widgettypecollection.cpp ../widgettypecollection.h \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/qmetatype.h \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/qvarlengtharray.h \
 		../../../Qt/5.13.1/gcc_64/include/QtCore/qcontainerfwd.h \
-		../../../Qt/5.13.1/gcc_64/include/QtCore/qobject_impl.h
+		../../../Qt/5.13.1/gcc_64/include/QtCore/qobject_impl.h \
+		../../../Qt/5.13.1/gcc_64/include/QtCore/QVector
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o widgettypecollection.o ../widgettypecollection.cpp
 
 qrc_resources.o: qrc_resources.cpp 

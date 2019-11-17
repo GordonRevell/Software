@@ -78,9 +78,9 @@ public:
     static QByteArray save();
     static bool restore(const QByteArray& widgets);
 
-    static WidgetTypeCollection& types()
+    static WidgetTypeCollection* types()
     {
-        return *s_widgetTypes;
+        return s_widgetTypes;
     }
 
 protected:

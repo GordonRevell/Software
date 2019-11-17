@@ -18,20 +18,22 @@ MainWindow::MainWindow(QWidget* parent) :
 
     explorer = createExplorer();
 
-    for(WidgetType* t : LocalWidget::types())
-    {
-        if(t)
+    auto types = LocalWidget::types();
+
+    types->forEach([this](WidgetType* t)
         {
-            QAction* a = new QAction(t->name());
-            QVariant v = qVariantFromValue(reinterpret_cast<void*>(t));
+            if(t)
+            {
+                QAction* a = new QAction(t->name());
+                QVariant v = qVariantFromValue(reinterpret_cast<void*>(t));
 
-            a->setData(v);
+                a->setData(v);
 
-            connect(a, &QAction::triggered, this, &MainWindow::addWidget);
+                connect(a, &QAction::triggered, this, &MainWindow::addWidget);
 
-            ui->menuAdd->addAction(a);
-        }
-    }
+                ui->menuAdd->addAction(a);
+            }
+        });
 
     timer = createTimer();
 }

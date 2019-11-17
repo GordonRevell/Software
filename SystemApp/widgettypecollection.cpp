@@ -21,3 +21,23 @@ bool WidgetTypeCollection::add(WidgetType* type)
 
     return result;
 }
+
+bool WidgetTypeCollection::forEach(ForEachFn forEach)
+{
+    bool result = false;
+
+    if(forEach)
+    {
+        for(auto t : _types)
+        {
+            if(t)
+            {
+                forEach(t);
+            }
+        }
+
+        result = true;
+    }
+
+    return result;
+}

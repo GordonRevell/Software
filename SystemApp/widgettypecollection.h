@@ -3,6 +3,8 @@
 
 #include "widgettype.h"
 
+#include <functional>
+
 #include <QObject>
 #include <QVector>
 
@@ -11,6 +13,8 @@ class WidgetTypeCollection : public QObject
     Q_OBJECT
 
 public:
+    using ForEachFn = std::function<void(WidgetType*)>;
+
     explicit WidgetTypeCollection(QObject *parent = nullptr);
 
     virtual ~WidgetTypeCollection();
@@ -36,6 +40,8 @@ public:
     {
         return _types.end();
     }
+
+    bool forEach(ForEachFn forEach);
 
 signals:
 
