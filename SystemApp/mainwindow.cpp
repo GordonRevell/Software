@@ -18,22 +18,20 @@ MainWindow::MainWindow(QWidget* parent) :
 
     explorer = createExplorer();
 
-    auto types = LocalWidget::types();
-
-    types->forEach([this](WidgetType* t)
+    for(auto t : LocalWidget::widgetTypes())
+    {
+        if(t)
         {
-            if(t)
-            {
-                QAction* a = new QAction(t->name());
-                QVariant v = qVariantFromValue(reinterpret_cast<void*>(t));
+            QAction* a = new QAction(t->name());
+            QVariant v = qVariantFromValue(reinterpret_cast<void*>(t));
 
-                a->setData(v);
+            a->setData(v);
 
-                connect(a, &QAction::triggered, this, &MainWindow::addWidget);
+            connect(a, &QAction::triggered, this, &MainWindow::addWidget);
 
-                ui->menuAdd->addAction(a);
-            }
-        });
+            ui->menuAdd->addAction(a);
+        }
+    }
 
     timer = createTimer();
 }
@@ -56,9 +54,10 @@ void MainWindow::showEvent(QShowEvent* event)
 
     settings.beginGroup("MainWindow");
 
+    LocalWidget::restore(settings.value("widgets").toByteArray(), this);
+
     restoreGeometry(settings.value("geometry").toByteArray());
     restoreState(settings.value("windowState").toByteArray());
-    LocalWidget::restore(settings.value("widgets").toByteArray());
 
     settings.endGroup();
 

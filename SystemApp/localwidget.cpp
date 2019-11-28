@@ -1,15 +1,16 @@
 #include "localwidget.h"
 
-unsigned int LocalWidget::s_count = 0;
-WidgetTypeCollection* LocalWidget::s_widgetTypes = nullptr;
-std::vector<LocalWidget*>* LocalWidget::s_widgets = nullptr;
+#include <QMainWindow>
 
 LocalWidget::LocalWidget(QWidget *parent) : QDockWidget(parent)
 {
 }
 
-LocalWidget::LocalWidget(const LocalWidget&)
+LocalWidget::LocalWidget(const LocalWidget& w) : QDockWidget()
 {
+    QWidget* parent = reinterpret_cast<QWidget*>(w.parent());
+
+    setParent(parent);
 }
 
 QByteArray LocalWidget::save()
@@ -17,34 +18,28 @@ QByteArray LocalWidget::save()
     QByteArray result;
     QDataStream out(&result, QIODevice::WriteOnly);
 
-    if(s_widgets)
+    out << int(s_widgets.size());
+
+    for(LocalWidget* w : s_widgets)
     {
-        out << int(s_widgets->size());
-
-        for(std::vector<LocalWidget*>::iterator it = s_widgets->begin(); it != s_widgets->end(); it++)
+        if(w)
         {
-            LocalWidget* w = *it;
+            std::cout << "Save: " << w->type()->name().toStdString() << " " << w->objectName().toStdString() << std::endl;
 
-            if(w)
-            {
-                std::cout << w->type()->name().toStdString() << " " << w->objectName().toStdString() << std::endl;
-
-                out << w->type()->name();
-                out << w->objectName();
-            }
+            out << w->type()->name();
+            out << w->objectName();
         }
     }
 
     return result;
 }
 
-bool LocalWidget::restore(const QByteArray& widgets)
+bool LocalWidget::restore(const QByteArray& widgets, QMainWindow* mainWindow)
 {
     QDataStream in(widgets);
     int numWidgets;
 
     in >> numWidgets;
-
 
     for(int i = 0; i < numWidgets; i++)
     {
@@ -54,11 +49,30 @@ bool LocalWidget::restore(const QByteArray& widgets)
         in >> type;
         in >> objectName;
 
-        auto widgetType = s_widgetTypes->find(type);
+        WidgetType* widgetType = nullptr;
+
+        for(auto t : s_types)
+        {
+            int x = QString::compare(type, t->name(), Qt::CaseInsensitive);
+
+            if(x == 0)
+            {
+                widgetType = t;
+
+                break;
+            }
+        }
 
         if(widgetType)
         {
-            std::cout << "Restore: " << widgetType->name().toStdString() << std::endl;
+            std::cout << "Restore: " << widgetType->name().toStdString() << " " << objectName.toStdString() << std::endl;
+
+            QDockWidget* dock = createLocalWidget(widgetType, objectName);
+
+            if(dock)
+            {
+                mainWindow->addDockWidget(Qt::RightDockWidgetArea, dock);
+            }
         }
     }
 
@@ -67,12 +81,75 @@ bool LocalWidget::restore(const QByteArray& widgets)
 
 void LocalWidget::closeEvent(QCloseEvent*)
 {
-    std::vector<LocalWidget*>::iterator i = std::find(s_widgets->begin(), s_widgets->end(), this);
+    std::vector<LocalWidget*>::iterator i = std::find(s_widgets.begin(), s_widgets.end(), this);
 
-    if (i != s_widgets->end())
+    if (i != s_widgets.end())
     {
-        s_widgets->erase(i);
+        std::cout << "Close: " << _type->name().toStdString() << " " << objectName().toStdString() << std::endl;
+
+        s_widgets.erase(i);
     }
+}
+
+std::vector<WidgetType*> LocalWidget::widgetTypes()
+{
+    return s_types;
+}
+
+LocalWidget* LocalWidget::createWidget(const QString& name)
+{
+    LocalWidget* result = nullptr;
+
+    auto c = name.toStdString();
+    int id = QMetaType::type(c.c_str());
+
+    if(id != QMetaType::UnknownType)
+    {
+        LocalWidget* dock = reinterpret_cast<LocalWidget*>(QMetaType::create(id));
+
+        if(dock)
+        {
+            result = dock;
+        }
+        else
+        {
+            std::cout << "Cannot create " << c << " class" << std::endl;
+        }
+    }
+    else
+    {
+        std::cout << "Cannot find " << c << " class" << std::endl;
+    }
+
+    return result;
+}
+
+QString LocalWidget::createObjectName(const QString& typeName)
+{
+    QString result;
+    std::vector<QString> names;
+
+    for(auto w : s_widgets)
+    {
+        QString n = w->objectName();
+        int x = QString::compare(n.left(typeName.length()), typeName, Qt::CaseInsensitive);
+
+        if(x == 0)
+        {
+            names.push_back(n);
+        }
+    }
+
+    int count = 0;
+
+    result = typeName + QString::number(count++);
+
+    while(std::find(names.begin(), names.end(), result) != names.end())
+    {
+        result = typeName + QString::number(count++);
+    }
+
+    return result;
 }
 
 WidgetType* LocalWidget::type() const

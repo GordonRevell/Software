@@ -2,11 +2,11 @@
 #define LOCALWIDGET_H
 
 #include "widgettype.h"
-#include "widgettypecollection.h"
 
 #include <QDockWidget>
 
 #include <iostream>
+#include <memory>
 
 class LocalWidget : public QDockWidget
 {
@@ -21,12 +21,7 @@ public:
         auto c = name.toStdString();
         int id = qRegisterMetaType<T>(c.c_str());
 
-        if(s_widgetTypes == nullptr)
-        {
-            s_widgetTypes = new WidgetTypeCollection();
-        }
-
-        s_widgetTypes->add(new WidgetType(name, id));
+        s_types.push_back(new WidgetType(name, id));
 
         return (id != QMetaType::UnknownType);
     }
@@ -37,16 +32,13 @@ public:
 
         if(dock)
         {
-            QString objectName = type->name() + QString::number(s_count++);
+            QString objectName = createObjectName(type->name());
+
+            std::cout << "Create: " << type->name().toStdString() << " " << objectName.toStdString() << std::endl;
 
             dock->setObjectName(objectName);
 
-            if(s_widgets == nullptr)
-            {
-                s_widgets = new std::vector<LocalWidget*>();
-            }
-
-            s_widgets->push_back(dock);
+            s_widgets.push_back(dock);
 
             dock->setType(type);
         }
@@ -60,14 +52,11 @@ public:
 
         if(dock)
         {
+            std::cout << "Create: " << type->name().toStdString() << " " << objectName.toStdString() << std::endl;
+
             dock->setObjectName(objectName);
 
-            if(s_widgets == nullptr)
-            {
-                s_widgets = new std::vector<LocalWidget*>();
-            }
-
-            s_widgets->push_back(dock);
+            s_widgets.push_back(dock);
 
             dock->setType(type);
         }
@@ -76,50 +65,21 @@ public:
     }
 
     static QByteArray save();
-    static bool restore(const QByteArray& widgets);
+    static bool restore(const QByteArray& widgets, QMainWindow* mainWindow);
 
-    static WidgetTypeCollection* types()
-    {
-        return s_widgetTypes;
-    }
+    static std::vector<WidgetType*> widgetTypes();
 
 protected:
     void closeEvent(QCloseEvent *event) override;
 
 private:
-    static unsigned int s_count;
-    static std::vector<LocalWidget*>* s_widgets;
-    static WidgetTypeCollection* s_widgetTypes;
-
-    static LocalWidget* createWidget(const QString& name)
-    {
-        LocalWidget* result = nullptr;
-
-        auto c = name.toStdString();
-        int id = QMetaType::type(c.c_str());
-
-        if(id != QMetaType::UnknownType)
-        {
-            LocalWidget* dock = reinterpret_cast<LocalWidget*>(QMetaType::create(id));
-
-            if(dock)
-            {
-                result = dock;
-            }
-            else
-            {
-                std::cout << "Cannot create " << c << " class" << std::endl;
-            }
-        }
-        else
-        {
-            std::cout << "Cannot find " << c << " class" << std::endl;
-        }
-
-        return result;
-    }
+    static inline std::vector<LocalWidget*> s_widgets;
+    static inline std::vector<WidgetType*> s_types;
 
     WidgetType* _type;
+
+    static LocalWidget* createWidget(const QString& name);
+    static QString createObjectName(const QString& typeName);
 
     WidgetType* type() const;
     void setType(WidgetType* type);
